@@ -12,12 +12,6 @@ bat './mvnw test'
 junit 'target/surefire-reports/*.xml'
 }
 }
-stage('build'){
-steps{
-bat './mvnw package'
-archiveArtifacts 'target/*.jar'
-}
-}
 stage('Documentation') {
     steps {
     bat './mvnw javadoc:javadoc'
@@ -43,8 +37,34 @@ stage('Documentation') {
      reportFiles: 'index.html',
      reportName: 'Documentation'
     ])
-
     }
+}
+stage('build'){
+steps{
+bat './mvnw package'
+archiveArtifacts 'target/*.jar'
+/*post {
+always{
+    emailexct(subject:"build réussi:",
+              body:"Le build a réussi.",
+              to: "houazenesabrina@gmail.com"
+              )
+}
+}*/
+failure{
+    mail(subject:"build échec:",
+              body:"Le build a échoué.",
+              to: "houazenesabrina@gmail.com"
+              )
+}
+success{
+    mail(subject:"build réussi:",
+              body:"Le build a réussi.",
+              to: "houazenesabrina@gmail.com"
+              )
+}
+
+}
 }
 }
 }
