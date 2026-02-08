@@ -51,9 +51,11 @@ always{
               )
 }
 }*/
+}
+post {
 failure{
     mail(subject:"build échec:",
-              body:"Le build a échoué.",
+         body:"Le build a échoué.",
               to: "houazenesabrina@gmail.com"
               )
 }
@@ -63,7 +65,6 @@ success{
               to: "houazenesabrina@gmail.com"
               )
 }
-
 }
 }
 }
