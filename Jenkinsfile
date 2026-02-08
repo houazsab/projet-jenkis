@@ -4,8 +4,9 @@ stages{
 stage('build'){
 steps{
 bat './mvnw clean package'
-//fgfhgfhtfhfh 
+archiveArtifacts 'target/*.jar'
 }
+
 }
 }
 }
