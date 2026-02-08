@@ -18,5 +18,10 @@ bat './mvnw package'
 archiveArtifacts 'target/*.jar'
 }
 }
+stage('documentation'){
+steps{
+archiveArtifacts 'target/site'
+}
+}
 }
 }
