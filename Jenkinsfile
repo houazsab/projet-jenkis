@@ -18,16 +18,21 @@ bat './mvnw package'
 archiveArtifacts 'target/*.jar'
 }
 }
-stage('documentation'){
-steps{
-bat './mvnw javadoc:javadoc'
-bat '''
-mkadir -p doc
-cp -r target/site/* doc/
-zip -r doc.zip doc
-'''
-archiveArtifacts artifacts: 'doc.zip'
-}
+stage('Documentation') {
+    steps {
+        script {
+            bat './mvnw javadoc:javadoc'
+
+            bat 'if exist doc rmdir /S /Q doc'
+            bat 'mkdir doc'
+
+            bat 'xcopy /E /I /Y target\\site doc'
+
+            bat 'powershell -Command "Compress-Archive -Path doc\\* -DestinationPath doc.zip"'
+
+            archiveArtifacts artifacts: 'doc.zip', fingerprint: true
+        }
+    }
 }
 }
 }
