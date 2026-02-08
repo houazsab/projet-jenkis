@@ -20,7 +20,8 @@ archiveArtifacts 'target/*.jar'
 }
 stage('Documentation') {
     steps {
-        script {
+    bat './mvnw javadoc:javadoc'
+       /* script {
             bat './mvnw javadoc:javadoc'
 
             bat 'if exist doc rmdir /S /Q doc'
@@ -31,7 +32,16 @@ stage('Documentation') {
             bat 'powershell -Command "Compress-Archive -Path doc\\* -DestinationPath doc.zip"'
 
             archiveArtifacts artifacts: 'doc.zip', fingerprint: true
-        }
+        }*/
+    publishHTML ([
+     allowMissing: false,
+     alwaysLinkToLastBuild: true,
+     keepAll: true,
+     reportDir: 'target/site/apidocs',
+     reportFiles: 'index.html',
+     reportName: 'Documentation'
+    ])
+
     }
 }
 }
