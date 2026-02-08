@@ -32,6 +32,8 @@ stage('Documentation') {
             bat 'powershell -Command "Compress-Archive -Path doc\\* -DestinationPath doc.zip"'
 
             archiveArtifacts artifacts: 'doc.zip', fingerprint: true
+
+
         }*/
     publishHTML ([
      allowMissing: false,
