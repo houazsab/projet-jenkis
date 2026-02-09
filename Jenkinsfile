@@ -70,6 +70,7 @@ success{
 stage('deployement'){
 steps{
 bat ' docker-compose up --build -d'
+
 }
 }
 }
