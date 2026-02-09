@@ -3,25 +3,26 @@ agent any
 stages{
 stage('parallel') {
     parallel{
-    stage('Unit Testing') {
-    steps {
-    bat './mvnw test'
-    junit 'target/surefire-reports/*.xml'
+        stage('Unit Testing') {
+            steps {
+            bat './mvnw test'
+            junit 'target/surefire-reports/*.xml'
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                bat './mvnw javadoc:javadoc'
+                publishHTML ([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'target/site/apidocs',
+                    reportFiles: 'index.html',
+                    reportName: 'Documentation'
+                ])
+            }
+        }
     }
-    stage('Code Analysis') {
-    steps {
-    bat './mvnw javadoc:javadoc'
-    publishHTML ([
-         allowMissing: false,
-         alwaysLinkToLastBuild: true,
-         keepAll: true,
-         reportDir: 'target/site/apidocs',
-         reportFiles: 'index.html',
-         reportName: 'Documentation'
-        ])
-    }
-    }
-}
 }
 /*stage('init'){
 steps{
