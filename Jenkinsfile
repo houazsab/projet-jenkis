@@ -1,7 +1,7 @@
 pipeline {
 agent any
 stages{
-stage('init'){
+/*stage('init'){
 steps{
 bat './mvnw clean'
 }
@@ -11,10 +11,10 @@ steps{
 bat './mvnw test'
 junit 'target/surefire-reports/*.xml'
 }
-}
-stage('Documentation') {
+}*/
+/*stage('Documentation') {
     steps {
-    bat './mvnw javadoc:javadoc'
+    bat './mvnw javadoc:javadoc'*/
        /* script {
             bat './mvnw javadoc:javadoc'
 
@@ -29,7 +29,7 @@ stage('Documentation') {
 
 
         }*/
-    publishHTML ([
+   /* publishHTML ([
      allowMissing: false,
      alwaysLinkToLastBuild: true,
      keepAll: true,
@@ -38,7 +38,7 @@ stage('Documentation') {
      reportName: 'Documentation'
     ])
     }
-}
+}*/
 stage('build'){
 steps{
 bat './mvnw package'
