@@ -52,7 +52,7 @@ always{
 }
 }*/
 }
-post {
+/*post {
 failure{
     mail(subject:"build échec:",
          body:"Le build a échoué.",
@@ -65,7 +65,7 @@ success{
               to: "houazenesabrina@gmail.com"
               )
 }
-}
+}*/
 }
 stage('deployement'){
 steps{
