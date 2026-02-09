@@ -23,7 +23,7 @@ stage('parallel') {
             }
         }
     }
-    
+
 }
 /*stage('init'){
 steps{
@@ -92,8 +92,10 @@ success{
 }
 }*/
 }
-
 stage('deployement'){
+when { // si la branche production
+branch 'master'
+}
 steps{
 bat ' docker-compose up --build -d'
 }
