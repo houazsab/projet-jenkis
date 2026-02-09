@@ -22,6 +22,7 @@ stage{
     }
     }
 }
+
 /*stage('init'){
 steps{
 bat './mvnw clean'
