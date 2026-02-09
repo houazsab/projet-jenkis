@@ -22,6 +22,7 @@ stage('parallel') {
     }
     }
 }
+}
 /*stage('init'){
 steps{
 bat './mvnw clean'
