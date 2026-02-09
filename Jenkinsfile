@@ -23,6 +23,7 @@ stage('parallel') {
             }
         }
     }
+    
 }
 /*stage('init'){
 steps{
@@ -95,7 +96,6 @@ success{
 stage('deployement'){
 steps{
 bat ' docker-compose up --build -d'
-
 }
 }
 }
